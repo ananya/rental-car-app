@@ -10,3 +10,12 @@ def car_form(request):
     else:
         form = CarForm()
     return render(request, 'car/car_form.html', {'form': form})
+
+
+def car_list(request):
+    cars = Car.objects.filter(available=True)
+
+    context = {
+        'cars': cars
+    }
+    return render(request, 'car/car_list.html', context)

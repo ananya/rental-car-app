@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Rental Car App{% endblock %}</title>
+</head>
+<body>
+   <div class="container-fluid">
+      <div class="row" style="margin-top: 6%">
+
+        <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+              <div class="row">
+                  {% for car in cars %}
+                      <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="{{ car.get_absolute_url }}">
+                                <img src="{% if car.image %} {{ car.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 130px; width: auto">
+                            </a>
+                            <div class="caption">
+                                <h3 class="text-center">
+                                    <a href="{{ car.get_absolute_url }}">{{ car.name }}</a>
+                                </h3>
+                                <p class="text-center">Kshs. {{ car.price }}</p>
+                            </div>
+                        </div>
+                      </div>
+                  {% endfor %}
+              </div>
+
+
+          </div><!-- /.blog-post -->
+
+        </div><!-- /.blog-main -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+</body>
+</html>
+
+
