@@ -12,7 +12,7 @@ def get_cars():
 
 def update_cars(requests):
     cars = get_cars()
-
+    print(cars)
     obj_name = ""
     obj_photo = ""
     obj_price = ""
@@ -46,7 +46,7 @@ def update_cars(requests):
                 car_Type=obj_car_type,
                 )
 
-        return redirect('car_list')
+    return redirect('car_list')
 
 def car_form(request):
     if request.method == "POST":

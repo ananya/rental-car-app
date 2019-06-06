@@ -43,7 +43,7 @@ from django.db import models
 class Car(models.Model):
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, db_index=True)
-    photo = models.ImageField(upload_to='cars/%Y/%m/%d', blank=True)
+    photo = models.CharField(max_length=100 blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=0)
     location = models.CharField(max_length=100, blank=True)
     available = models.BooleanField(default=True)
@@ -84,7 +84,7 @@ class Car(models.Model):
     car_Type = models.CharField(max_length=10, choices=CAR_OPTIONS)
     
     class Meta:
-        ordering = ('name', )
+        ordering = ('price','name', )
         index_together = (('id', 'slug'),)
 
     def __str__(self):
