@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Car
 from .forms import CarForm
+from django.db.models import Q
 import requests
 import json
 from django.core.paginator import Paginator
@@ -62,10 +63,26 @@ def car_form(request):
 
 def car_list(request):
     queryset = Car.objects.all()
+    
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(
+            Q(name__icontains=query) |
+            Q(location__icontains=query) |
+            Q(seats__icontains=query) |
+            Q(fuel_Type__icontains=query) |
+            Q(transmission__icontains=query) |
+            Q(car_Type__icontains=query) |
+            Q(price__icontains=query)
+
+            )
+
+
     paginator = Paginator(queryset, 6)
     page = request.GET.get('page')
     cars = paginator.get_page(page)
 
+    
     context = {
         'cars': cars
     }
