@@ -11,54 +11,60 @@
     <form method="GET" action="">
         <input type="text" name="q" placeholder="Seach">
         <input type="submit" value="Search">
-     </form>
-        <div class="row">
-                <div class="col-lg-11">
-                  <section class="section section-lg pt-lg-5 ">
-                    <div class="row justify-content-center" >
-              
-                      <div class="col-lg-10">
-              
+    </form>
+    <div class="row">
+        <div class="col-lg-11">
+            <section class="section section-lg pt-lg-5 ">
+                <div class="row justify-content-center" >
+                    <div class="col-lg-10">      
                         <div class="row row-grid" id="carddata">
-              
                           {% for car in cars %}
-                          <a href="{{ car.get_absolute_url }}">
-                            <div class="col-lg-3 pt-2 d-flex align-items-stretch">
-                                <div class="card card-lift--hover shadow border-0">
-                                  <img class="card-img-top" style=" width: 100%; height: 15vw; object-fit: cover;" src="{{ car.photo }}">
-                                        <div class="card-body">
-                                              <div class="container">
-                                                <div class="row">
-                                                  <div class="col-sm">
-                                                    <h1 class="text-center"> Rs.{{ car.price|floatformat }}</h1>
-                                                  </div>
-              
+                            <a href="{{ car.get_absolute_url }}">
+                                <div class="col-lg-3 pt-2 d-flex align-items-stretch">
+                                    <div class="card card-lift--hover shadow border-0">
+                                        <img class="card-img-top" style=" width: 100%; height: 15vw; object-fit: cover;" src="{{ car.photo }}">
+                                            <div class="card-body">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class="col-sm">
+                                                            <h1 class="text-center"> Rs.{{ car.price|floatformat }}</h1>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                              </div>
-                                              <h3 class="text-primary text-center"><a
-                                                  href="{{ car.get_absolute_url }}">
-                                                  {{ car.name }}</a></h3>
-                                            </a>
-                                          </div>
-                                        </div>
-                                      </div>
-                                  </a>
-                                  {% endfor %}
-              
+                                                <h3 class="text-primary text-center">
+                                                    <a href="{{ car.get_absolute_url }}">
+                                                    {{ car.name }}</a>
+                                                </h3>
+                                            </div>
+                                    </div>
                                 </div>
-              
-                              </div>
-              
-                            </div>
-                  </section>
-              
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-              
-              </div>
+            </section>
+        </div>     
+    </div>
 
+    <div class="pagination">
+            <span class="step-links">
+                {% if cars.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ cars.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ cars.number }} of {{ cars.paginator.num_pages }}.
+                </span>
+        
+                {% if cars.has_next %}
+                    <a href="?page={{ cars.next_page_number }}">next</a>
+                    <a href="?page={{ cars.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
 
-
-  
 </body>
 </html>
 

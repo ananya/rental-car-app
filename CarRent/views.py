@@ -3,6 +3,8 @@ from .models import Car
 from .forms import CarForm
 import requests
 import json
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
 def get_cars():
     url = "https://api.sheety.co/311576ae-321a-43e3-9a5b-61b3ac373d85"
@@ -59,9 +61,14 @@ def car_form(request):
 
 
 def car_list(request):
-    cars = Car.objects.filter(available=True)
+    queryset = Car.objects.all()
+    paginator = Paginator(queryset, 6)
+    page = request.GET.get('page')
+    cars = paginator.get_page(page)
 
     context = {
         'cars': cars
     }
     return render(request, 'car/car_list.html', context)
+
+
