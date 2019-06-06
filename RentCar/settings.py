@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'CarRent',
     'widget_tweaks',
+    'tagging',
 ]
 
 MIDDLEWARE = [
