@@ -1,25 +1,25 @@
 from django.contrib import admin
-from .models import TransmissionType, CarType, FuelType, Car
+from .models import Car
 
-class TransmissionTypeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug':('name',)}
+# class TransmissionTypeAdmin(admin.ModelAdmin):
+#     list_display = ['name', 'slug']
+#     prepopulated_fields = {'slug':('name',)}
 
-admin.site.register(TransmissionType, TransmissionTypeAdmin)
-
-
-class CarTypeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug':('name',)}
-
-admin.site.register(CarType, CarTypeAdmin)
+# admin.site.register(TransmissionType, TransmissionTypeAdmin)
 
 
-class FuelTypeAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug':('name',)}
+# class CarTypeAdmin(admin.ModelAdmin):
+#     list_display = ['name', 'slug']
+#     prepopulated_fields = {'slug':('name',)}
 
-admin.site.register(FuelType, FuelTypeAdmin)
+# admin.site.register(CarType, CarTypeAdmin)
+
+
+# class FuelTypeAdmin(admin.ModelAdmin):
+#     list_display = ['name', 'slug']
+#     prepopulated_fields = {'slug':('name',)}
+
+# admin.site.register(FuelType, FuelTypeAdmin)
 
 
 class CarAdmin(admin.ModelAdmin):
