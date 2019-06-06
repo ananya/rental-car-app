@@ -4,40 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Rental Car App{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/argon.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/argon.min.css' %}">
 </head>
 <body>
-   <div class="container-fluid">
-      <div class="row" style="margin-top: 6%">
 
-        <div class="col-sm-8 blog-main">
-
-          <div class="blog-post">
-              <div class="row">
-                  {% for car in cars %}
-                      <div class="col-md-4">
-                        <div class="thumbnail">
-                            <a href="{{ car.get_absolute_url }}">
-                                <img src="{% if car.image %} {{ car.image.url }} {% else %} {% static 'img/default.jpg' %} {% endif %}" alt="..." style="height: 130px; width: auto">
-                            </a>
-                            <div class="caption">
-                                <h3 class="text-center">
-                                    <a href="{{ car.get_absolute_url }}">{{ car.name }}</a>
-                                </h3>
-                                <p class="text-center">Kshs. {{ car.price }}</p>
+        <div class="row">
+                <div class="col-lg-11">
+                  <section class="section section-lg pt-lg-5 ">
+                    <div class="row justify-content-center" >
+              
+                      <div class="col-lg-10">
+              
+                        <div class="row row-grid" id="carddata">
+              
+                          {% for car in cars %}
+                          <a href="{{ car.get_absolute_url }}">
+                            <div class="col-lg-3 pt-2 d-flex align-items-stretch">
+                                <div class="card card-lift--hover shadow border-0">
+                                  <img class="card-img-top" style=" width: 100%; height: 15vw; object-fit: cover;" src="{% if car.photo %} {{ car.photo.url }} 
+                                        {% else %} {% static 'img/default.jpg' %} {% endif %}">
+                                        <div class="card-body">
+                                              <div class="container">
+                                                <div class="row">
+                                                  <div class="col-sm">
+                                                    <h1 class="text-center"> Rs.{{ car.price|floatformat }}</h1>
+                                                  </div>
+              
+                                                </div>
+                                              </div>
+                                              <h3 class="text-primary text-center"><a
+                                                  href="{{ car.get_absolute_url }}">
+                                                  {{ car.name }}</a></h3>
+                                            </a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </a>
+                                  {% endfor %}
+              
+                                </div>
+              
+                              </div>
+              
                             </div>
-                        </div>
-                      </div>
-                  {% endfor %}
+                  </section>
+              
+                </div>
+              
               </div>
 
 
-          </div><!-- /.blog-post -->
 
-        </div><!-- /.blog-main -->
-
-      </div><!-- /.row -->
-
-    </div><!-- /.container -->
+  
 </body>
 </html>
 
