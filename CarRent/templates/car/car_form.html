@@ -24,28 +24,50 @@
                 </div>
               </div> -->
 
-        <section class="section section-shaped section-lg">
-          <div class="container pt-lg-md">
-            <div class="row justify-content-center">
-              <div class="col-lg-15">
-                <!-- <div class="card bg-secondary shadow border-0"> -->
-                  <div class="card-body px-lg-10 py-lg-5">
-                    <form method="POST" class="post-form">{% csrf_token %}
-                      {% for field in form.visible_fields %}
-                      <div class="form-group">
-                        {{ field.label_tag }}
-                        {% render_field field class="form-control" %}
+              <section class="section section-shaped section-lg">
+                  <div class="container pt-lg-md">
+                    <div class="row justify-content-center">
+                      <div class="col-lg-8">
+                        <!-- <div class="card bg-secondary shadow border-0"> -->
+                          <div class="card-body px-lg-5 py-lg-5">
+                            <form enctype="multipart/form-data" method="POST" role="form">
+                                {% csrf_token %}
+                                            
+                                
+                                    <div class="form-group">
+                                      {{ form.location.label_tag }}
+                                      {{ form.location|add_class:'form-control' }}
+                                    </div>
+                                    <div class="form-group">
+                                        {{ form.startdate.label_tag }}
+                                        <div class="input-group ">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-calendar-grid-58"></i></span>
+                                            </div>
+                                            
+                                            {{ form.startdate|add_class:'form-control datepicker' }}
+                                            <!-- <input class="form-control datepicker" placeholder="Select date" type="text" value="06/20/2018"> -->
+                                        </div>
+                                    </div>
+                      
+                                    
+                                
+            
+                                {{ formset.as_table }}
+                              
+                              <div class="text-center">
+                                <button type="submit" class="btn btn-primary mt-4">POST</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
                       </div>
-                      {% endfor %}
-                      <button type="submit" class="save btn btn-default">Save</button>
-                  </form>
+                    </div>
                   </div>
-                <!-- </div> -->
-              </div>
-            </div>
-          </div>
-        </section>
+                </section>
       </main>
+      <script src="{% static 'assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+
     </body>
 </html>
 
